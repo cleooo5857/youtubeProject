@@ -1,8 +1,12 @@
+import HeaderLayout from "./Header/Layout";
 import VideoList from "./List/VideoList";
 
 function MainPage() {
    return (
-      <VideoList/>
+      <>
+         <HeaderLayout/>
+         <VideoList/>
+      </>
    )
 }
 

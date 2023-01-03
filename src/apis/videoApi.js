@@ -3,20 +3,20 @@ const PATH = '/videos?'
 const URL = 'part=snippet&chart=mostPopular&maxResults=16&regionCode=KR'
 
 const VideoApi = {
-   getPopluarVideo({params,token}) {
-      
-      return Axios.get(PATH + URL, {params})
+   getPopluarVideo() {
+      return Axios.get(PATH + URL )
    },
 
-   // getPopluaraddVideo(Token) {
-   //    return Axios.get(PATH , { params : {
-   //       part: 'snippet',
-   //       chart : 'mostPopular',
-   //       maxResults: 8,
-   //       regionCode : 'KR',
-   //       nextPageToken:Token !== Token,
-   //    }})
-   // }
+   getPopluaraddVideo(params) {
+      console.log(params);
+      return Axios.get(PATH  ,{params : {
+         part: 'snippet',
+         maxResults: 9,
+         type: 'video',
+         chart : 'mostPopular' ,
+         pageToken: params && params,
+      }})
+   }
 }
 
 export default VideoApi
