@@ -14,7 +14,7 @@ const palette = {
 const fontSize = {
     small: '12px',
     medium: '14px',
-    large: '16px',
+    large: '15px',
     xLarge: '20px',
 };
 
@@ -23,7 +23,7 @@ const fontWeight = {
     thin: '100',
     regular: '400',
     medium: '500',
-    bold: '800',
+    bold: '600',
 };
 
 // 행간

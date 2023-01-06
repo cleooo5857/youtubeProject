@@ -6,6 +6,7 @@ import {useMutation,useQuery,useQueryClient} from "@tanstack/react-query"
 import queryKey from "../../conts/queryKey";
 import VideoApi from "../../apis/videoApi";
 import { useInView } from 'react-intersection-observer'
+import SearchFrom from '../Header/search/SearchForm/SearchForm';
 
 function VideoList() {
    
@@ -46,8 +47,8 @@ function VideoList() {
                         }
                      })
                   }
-         }catch{
-
+         }catch(err){
+            console.log(err);
          }
       }
       res()

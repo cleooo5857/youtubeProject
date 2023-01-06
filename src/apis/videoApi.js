@@ -1,5 +1,6 @@
 import Axios from "./@core"
 const PATH = '/videos?'
+const Search = '/search?'
 const URL = 'part=snippet&chart=mostPopular&maxResults=16&regionCode=KR'
 
 const VideoApi = {
@@ -16,6 +17,10 @@ const VideoApi = {
          chart : 'mostPopular' ,
          pageToken: params && params,
       }})
+   },
+
+   getSearchMovieList(params) {
+      return Axios.get(Search , {params})
    }
 }
 

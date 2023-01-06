@@ -43,14 +43,19 @@ const Title = styled.div`
    
 
    & p {
-      font-size: ${({theme}) => theme.palette.mainColor};
+      font-size: ${({theme}) => theme.fontSize.medium};
+      font-weight: ${({theme}) => theme.fontWeight.bold};
+      color: ${({theme}) => theme.palette.subColor};
       display: block;
       margin-bottom: 5px;
+
       width: 100%;
    }
 
    & p + p {
-      font-size: ${({theme}) => theme.palette.small};
+      font-size: ${({theme}) => theme.fontSize.small};
+      font-weight: ${({theme}) => theme.fontWeight.medium};
+
    }
 `
 

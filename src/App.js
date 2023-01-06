@@ -1,9 +1,10 @@
 import {ThemeProvider} from 'styled-components'
-import Axios from './apis/@core';
-import MainPage from './MainPage';
+import MainPage from './Pages/index.js';
 import {theme} from './styles/theme'
 import GlobalStyles from './styles/global';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import SearchList from './Pages/SearchList/SearchList';
 
 
 function App() {
@@ -29,7 +30,12 @@ function App() {
     <QueryClientProvider client={qureyClient}>
       <ThemeProvider theme={theme}>
         <GlobalStyles/>
-        <MainPage/>
+        <BrowserRouter>
+          <Routes>
+          <Route path='/' element={<MainPage/>} /> 
+          <Route path='/search/:searchID' element={<SearchList/>} /> 
+          </Routes>
+        </BrowserRouter>
       </ThemeProvider>
     </QueryClientProvider>
   );

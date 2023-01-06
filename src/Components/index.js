@@ -2,8 +2,14 @@ import VideoCard from "./Card/VideoCard";
 
 function Components() {
    return (
-      <VideoCard/>
+      <Wrapper>
+         <VideoCard/>
+      </Wrapper>
    )
 }
 
 export default Components
+
+const Wrapper = styled.div`
+   display: block;
+`

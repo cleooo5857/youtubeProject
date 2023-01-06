@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import { flexAlignCenter, flexCenter } from "../../styles/common";
-import SearchFrom from "./search/SearchForm";
+import Logo from "./Logo/logo";
+import SearchFrom from "./search/SearchForm/SearchForm";
 
 function HeaderLayout() {
    return (
       <S.Wrapper>
          <Container>
+            <Logo/>
             <SearchFrom/>
          </Container>
       </S.Wrapper>
