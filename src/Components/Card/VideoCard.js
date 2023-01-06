@@ -1,7 +1,18 @@
+import { useEffect, useState } from "react"
 import styled from "styled-components"
 
 function VideoCard({list}) {
 
+   const [videoOverview, setvideoOverview] = useState(list.snippet.title)
+
+
+   useEffect(() => {
+      if(list.snippet.title.length > 50){
+         setvideoOverview(list.snippet.title.slice(0,50) + '...')
+      }else{
+         setvideoOverview(videoOverview)
+      }
+   },[])
  
    return (
       <S.Wrapper>
@@ -10,7 +21,7 @@ function VideoCard({list}) {
          </div>
          <S.Title>
             <div>
-               <p>{list.snippet.title}</p>
+               <p>{videoOverview}</p>
                <p>{list.snippet.channelTitle}</p>
             </div>
          </S.Title>
@@ -55,7 +66,6 @@ const Title = styled.div`
    & p + p {
       font-size: ${({theme}) => theme.fontSize.small};
       font-weight: ${({theme}) => theme.fontWeight.medium};
-
    }
 `
 

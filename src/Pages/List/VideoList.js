@@ -54,7 +54,8 @@ function VideoList() {
       res()
    },[inView])
 
-   console.log(AddvideoList);
+
+   console.log(AddvideoList && AddvideoList.data.items);
 
 
    // return {
