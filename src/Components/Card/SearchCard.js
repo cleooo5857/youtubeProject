@@ -13,6 +13,7 @@ function SearchCard({list}) {
                   <p>{list.snippet.title}</p>
                </div>
             </S.Title>
+
       </S.Wrapper>
    )
 }

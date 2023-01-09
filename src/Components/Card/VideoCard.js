@@ -39,6 +39,7 @@ const Wrapper = styled.div`
       display: flex;
       flex-wrap : wrap;
       width: 100%;
+
    }
 
    & div img {
@@ -46,8 +47,11 @@ const Wrapper = styled.div`
    margin-right: auto;
    overflow: hidden;
    display: block;
+   border-radius: 25px;
    margin-right: 5px;
+
    }
+   
 `
 const Title = styled.div`
    margin-top: 10px;
@@ -59,8 +63,8 @@ const Title = styled.div`
       color: ${({theme}) => theme.palette.subColor};
       display: block;
       margin-bottom: 5px;
-
       width: 100%;
+      padding : 0 10px
    }
 
    & p + p {

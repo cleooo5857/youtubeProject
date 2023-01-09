@@ -15,16 +15,7 @@ function VideoList() {
    const [pageToken,setPageToKen] = useState();
    // 맨처음 받아온 리스트의 nextpagetoken값을 state값의 저장
    // inview true 일때 nextpagetoken값 저장해서 보냄
-   // useEffect(() => { 
-   //    const res = async() =>{
-      //       try{
-   //           setList(videoList)
-   //       }catch{
-
-   //       }
-   //     }
-   //     res()
-   //    },[videoList])
+   
 
    const {data : videoList} = useQuery([queryKey.POPLUAR_VIDEO_LIST] , () => VideoApi.getPopluarVideo(), {
       onSuccess: (res) => {
@@ -36,7 +27,13 @@ function VideoList() {
       const res = async() =>{
          try{
             if(inView){
+               
                const respone = await VideoApi.getPopluaraddVideo(pageToken);
+               if(AddvideoList.data.items.length > 100) {
+                  alert('다음 영상이 없습니다.')
+                  return  AddvideoList.data.items;
+               }
+
                setPageToKen(respone.data.nextPageToken)
                setAddVideoList({
                      ...AddvideoList,
@@ -75,8 +72,8 @@ function VideoList() {
    return (
       <S.Wrapper>
          {AddvideoList &&
-            AddvideoList.data.items.map((list) => 
-               <VideoCard list={list}/>
+            AddvideoList.data.items.map((list,index) => 
+               <VideoCard key={index} list={list}/>
             )
          }
          <div ref={ref}></div>

@@ -3,17 +3,16 @@ import { useLocation, useNavigate } from "react-router-dom"
 import styled from "styled-components";
 import VideoApi from "../../apis/videoApi"
 import SearchCard from "../../Components/Card/SearchCard";
-import { useInView } from 'react-intersection-observer'
+import { useInView } from 'react-intersection-observer';
 import HeaderLayout from "../Header/Layout";
 
 
 function SearchList(){
    const [ SearchList , setSearchList] = useState();
-   const [ref, inView] = useInView()
-   const location = useLocation()
-   console.log(location);
-   const data = location.pathname.slice(8)
-   const decodeurl = decodeURI(data) 
+   const [ref, inView] = useInView();
+   const location = useLocation();
+   const data = location.pathname.slice(8);
+   const decodeurl = decodeURI(data);
 
    // inview 커스텀 훅
    // 각 페이지의 끝 지점 도달
@@ -28,7 +27,6 @@ function SearchList(){
                maxResults: 9,
                q:decodeurl,
             }
-            
             const res = await VideoApi.getSearchMovieList(data)
             setSearchList(res);
             
@@ -38,8 +36,13 @@ function SearchList(){
       }
       res()
    },[location])
+   console.log(SearchList);
 
-   
+   useEffect(() => {
+      // 서버 요청시 취소됐을때
+      
+      
+   }, [inView]);
 
    return(
       <S.Wrapper>
@@ -49,11 +52,9 @@ function SearchList(){
                <SearchCard list={list}/>
             )
          }
-         {/* <div ref={ref}></div> */}
+         <div ref={ref} />
       </S.Wrapper>
    )
-
-   
 }
 
 export default SearchList

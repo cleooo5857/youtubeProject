@@ -15,6 +15,7 @@ const VideoApi = {
          maxResults: 9,
          type: 'video',
          chart : 'mostPopular' ,
+         regionCode:'KR',
          pageToken: params && params,
       }})
    },
