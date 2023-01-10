@@ -5,11 +5,14 @@ import VideoApi from "../../apis/videoApi"
 import SearchCard from "../../Components/Card/SearchCard";
 import { useInView } from 'react-intersection-observer';
 import HeaderLayout from "../Header/Layout";
+import useInfiniteList from "../../hooks/InfiniteList";
 
 
 function SearchList(){
    const [ SearchList , setSearchList] = useState();
-   const [ref, inView] = useInView();
+   const [ ref, inView] = useInView();
+   const [addToken,setAddToken] = useState();
+   const [ Token, AddSearchList ] = useInfiniteList(addToken);
    const location = useLocation();
    const data = location.pathname.slice(8);
    const decodeurl = decodeURI(data);
@@ -29,21 +32,25 @@ function SearchList(){
             }
             const res = await VideoApi.getSearchMovieList(data)
             setSearchList(res);
-            
+            setAddToken(res.data.nextPageToken); 
          }catch (err){
             console.log(err);
          }
       }
       res()
    },[location])
-   console.log(SearchList);
+
 
    useEffect(() => {
       // 서버 요청시 취소됐을때
-      
-      
+      if(inView){
+         // api를 인자로 전달?
+         AddSearchList(VideoApi.getSearchMovieList())
+
+      }
    }, [inView]);
 
+   
    return(
       <S.Wrapper>
          <HeaderLayout/>
