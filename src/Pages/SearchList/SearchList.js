@@ -12,11 +12,11 @@ function SearchList(){
    const [ SearchList , setSearchList] = useState();
    const [ ref, inView] = useInView();
    const [addToken,setAddToken] = useState();
-   const [ Token, AddSearchList ] = useInfiniteList(addToken);
+   const [ Token, AddSearchList , item ] = useInfiniteList(addToken);
    const location = useLocation();
    const data = location.pathname.slice(8);
    const decodeurl = decodeURI(data);
-
+   const dataParam = {part:'snippet',maxResults: 9,q:decodeurl,}
    // inview 커스텀 훅
    // 각 페이지의 끝 지점 도달
    // 인풋값으로는 해당 nextToken값이 필요
@@ -25,14 +25,10 @@ function SearchList(){
    useEffect(() => {
       const res = async () => {
          try{
-            const data = {
-               part:'snippet',
-               maxResults: 9,
-               q:decodeurl,
-            }
-            const res = await VideoApi.getSearchMovieList(data)
-            setSearchList(res);
-            setAddToken(res.data.nextPageToken); 
+            
+            const res = await VideoApi.getSearchMovieList(dataParam)
+            setSearchList(res.data);
+            setAddToken(res.nextPageToken); 
          }catch (err){
             console.log(err);
          }
@@ -41,22 +37,31 @@ function SearchList(){
    },[location])
 
 
-   useEffect(() => {
+   useEffect( () => {   
       // 서버 요청시 취소됐을때
-      if(inView){
+      if(!inView) return
          // api를 인자로 전달?
-         AddSearchList(VideoApi.getSearchMovieList())
-
-      }
+         const infiniteScrollList =  VideoApi.getSearchMovieList
+         AddSearchList(infiniteScrollList,dataParam)
    }, [inView]);
-
    
+   useEffect(() => {
+      if(SearchList&&SearchList.items){
+         setSearchList({
+            ...SearchList,
+            items: SearchList.items.concat(item)
+         })
+      }
+   },[item])
+
+   console.log(SearchList);
+
    return(
       <S.Wrapper>
          <HeaderLayout/>
          {SearchList &&
-            SearchList.data.items.map((list) => 
-               <SearchCard list={list}/>
+            SearchList.items.map((list,index) => 
+               <SearchCard key={index} list={list}/>
             )
          }
          <div ref={ref} />
