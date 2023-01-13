@@ -20,9 +20,12 @@ function VideoList() {
    const {data : videoList} = useQuery([queryKey.POPLUAR_VIDEO_LIST] , () => VideoApi.getPopluarVideo(), {
       onSuccess: (res) => {
          setAddVideoList(res)
+         setPageToKen(res.data.nextPageToken)
       }
    });
-   
+
+   console.log(pageToken);
+
    useEffect(() => {
       const res = async() =>{
          try{
