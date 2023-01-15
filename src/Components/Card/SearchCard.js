@@ -28,7 +28,7 @@ const Wrapper = styled.div`
    & div {
       display: flex;
       flex-wrap : wrap;
-      width: 30%;
+      width: 20%;
    }
 
    & div img {
@@ -36,7 +36,7 @@ const Wrapper = styled.div`
    margin-right: auto;
    overflow: hidden;
    display: block;
-   margin-right: 5px;
+   margin: 5px;
    width: 100%;
    }
 `
