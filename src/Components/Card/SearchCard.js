@@ -38,6 +38,7 @@ const Wrapper = styled.div`
    display: block;
    margin: 5px;
    width: 100%;
+   border-radius: 25px;
    }
 `
 const Title = styled.div`
